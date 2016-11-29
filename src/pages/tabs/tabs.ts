@@ -1,0 +1,22 @@
+import { Component } from '@angular/core';
+
+// import { HomePage } from '../home/home';
+import { AboutPage } from '../about/about';
+import { ContactPage } from '../contact/contact';
+import { Transactions } from '../transactions/transactions';
+
+@Component({
+  templateUrl: 'tabs.html'
+})
+export class TabsPage {
+  // this tells the tabs component which Pages
+  // should be each tab's root Page
+  // tab1Root: any = HomePage;
+  tab1Root: any = Transactions;
+  tab2Root: any = AboutPage;
+  tab3Root: any = ContactPage;
+
+  constructor() {
+
+  }
+}
