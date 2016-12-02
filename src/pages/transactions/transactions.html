@@ -19,7 +19,9 @@
     <ion-card-header>Movimientos</ion-card-header>
     <ion-list *ngFor="let transaction of transactions">
       <button ion-item>
-        <strong>{{ transaction.amount }}</strong> {{ transaction.title }}
+        <ion-icon name="pricetags" item-left></ion-icon>
+        <strong>{{ transaction.title }}</strong>
+        <ion-badge item-right>Q.{{ transaction.amount }}</ion-badge>
       </button>
     </ion-list>
   </ion-card>

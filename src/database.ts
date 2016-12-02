@@ -46,9 +46,31 @@ export class Transaction implements ITransaction{
         if(id) this.id = id;
         if(imageURL) this.imageURL = imageURL;
     }
-
+    
     save(){
         return db.transactions.add(this);
+    }
+
+    setCoords(coords){
+        this.lat = coords.latitude;
+        this.lng = coords.longitude;
+    }
+
+    cleanCoords(){
+        this.lat = null;
+        this.lng = null;
+    }
+
+    getImage(): string{
+        if(this.imageURL){
+            return this.imageURL;
+        }else{
+            return "blue";
+        }
+    }
+
+    hasLocation(): boolean{
+        return !!(this.lat && this.lng);
     }
 
     static all(){

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import db from '../database';
+import { db } from '../database';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
