@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
+import { Camera, CameraOptions } from 'ionic-native';
 import { Transaction } from '../../database';
 import { GeolocationService } from '../../services/geolocation.service';
-import { Camera, CameraOptions } from 'ionic-native';
+import { WalletService } from '../../services/wallet.service'
 
 /*
   Generated class for the Adding page.
@@ -22,8 +23,9 @@ export class AddingPage {
   imageData: string;
   loader: any;
   
-  constructor(public navCtrl: NavController, public geolocator: GeolocationService, public loadingCtrl: LoadingController) {
-    this.model =  new Transaction(null, "");
+  constructor(public navCtrl: NavController, public geolocator: GeolocationService, 
+              public loadingCtrl: LoadingController, private walletService: WalletService) {
+    this.model = this.cleanTransaction();
     this.loader = this.loadingCtrl.create({
       content: "Porfavor espere...",
     });
@@ -70,9 +72,15 @@ export class AddingPage {
   save(){
     if(this.shouldSend){
       this.model.save().then(result => {
-        this.model =  new Transaction(null, "");
+        this.model =  this.cleanTransaction();
         this.navCtrl.pop();
       });
     }
+  }
+
+  cleanTransaction(): Transaction{
+    let transaction = new Transaction(null, "");
+    transaction.walletId = this.walletService.getID();
+    return transaction;
   }
 }

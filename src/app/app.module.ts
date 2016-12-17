@@ -8,7 +8,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Transactions } from '../pages/transactions/transactions';
 import { AddingPage } from '../pages/adding/adding';
 import { MapPage } from '../pages/map/map';
+import { WalletsPage } from '../pages/wallets/wallets';
 import { GeolocationService } from '../services/geolocation.service';
+import { WalletService } from '../services/wallet.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { GeolocationService } from '../services/geolocation.service';
     TabsPage,
     Transactions,
     AddingPage,
-    MapPage
+    MapPage,
+    WalletsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -33,11 +36,13 @@ import { GeolocationService } from '../services/geolocation.service';
     TabsPage,
     Transactions,
     AddingPage,
-    MapPage
+    MapPage,
+    WalletsPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler}, 
-    GeolocationService
+    GeolocationService,
+    WalletService
   ]
 })
 export class AppModule {}
