@@ -5,12 +5,7 @@ import { Transaction } from '../../database';
 import { GeolocationService } from '../../services/geolocation.service';
 import { WalletService } from '../../services/wallet.service'
 
-/*
-  Generated class for the Adding page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-adding',
   templateUrl: 'adding.html'

@@ -1,0 +1,30 @@
+<!--
+  Generated template for the NewWallet page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Nueva Cartera</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="model.name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Monto Inicial</ion-label>
+        <ion-input type="number" name="amount" [(ngModel)]="model.amount"></ion-input>
+    </ion-item>
+
+    <div padding>
+        <button ion-button block (tap)="save()">Guardar</button>
+    </div>
+
+</ion-content>

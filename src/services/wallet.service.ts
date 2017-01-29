@@ -14,6 +14,10 @@ export class WalletService{
     return parseInt(localStorage.getItem(StorageKey));
   }
 
+  empty(): boolean{
+    return !localStorage.getItem(StorageKey);
+  }
+
   validateFirstWallet(){
     // Devuelve una promesa
     return new Promise((resolve, reject) => {

@@ -82,10 +82,14 @@ export class Transaction implements ITransaction {
     return !!(this.lat && this.lng);
   }
 
-  static all() {
+  static all(walletID) {
     // Transaction.all() => Todas las transactions
     // return promise
-    return db.transactions.orderBy("id").reverse().toArray();
+    return db.transactions
+              .where("walletId")
+              .equals(walletID)
+              .reverse()
+              .toArray();
   }
 }
 
@@ -110,6 +114,10 @@ export class Wallet implements IWallet {
     return db.wallets.add(this);
   }
 
+  static deleteWallet(wallet){
+    return db.wallets.delete(wallet.id);
+  }
+
   static createFirst(){
     let wallet = new Wallet(0, "Primera Cartera");
     return wallet.save();
@@ -124,6 +132,20 @@ export class Wallet implements IWallet {
     // return promise
     return db.wallets.orderBy("id").toArray();
   }
+
+  static getWalletId(wallet){
+    // Transaction.all() => Todas las transactions
+    // return promise
+    return db.wallets
+              .where("id")
+              .equals(wallet.id)
+              .toArray();
+  }
+
+  updateWallet(wallet) {
+    return db.wallets.update(wallet.id, {name: wallet.name, amount: wallet.amount});
+  }
+
 
 }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng, GoogleMapsMarkerOptions, GoogleMapsMarker } from 'ionic-native';
 import { GeolocationService } from '../../services/geolocation.service';
+import { TransactionService } from '../../services/transactions.service';
 import { Transaction } from '../../database';
 
 /*
@@ -20,7 +21,8 @@ export class MapPage {
   loader: any;
 
   constructor(public navCtrl: NavController, 
-              public geolocator: GeolocationService, 
+              public geolocator: GeolocationService,
+              private transactionService: TransactionService,
               public loadingCtrl: LoadingController) 
   {
     this.loader = this.loadingCtrl.create({
@@ -38,7 +40,7 @@ export class MapPage {
 
   loadMarkers(){
     this.loader.present();
-    Transaction.all().then((resultado) => this.loadTransactionMarkers(resultado));
+    this.transactionService.all().then((resultado) => this.loadTransactionMarkers(resultado));
   }
 
   loadTransactionMarkers(transactions){
