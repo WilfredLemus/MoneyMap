@@ -49,7 +49,6 @@ export class WalletsPage {
           role: 'destructive',
           icon: 'trash',
           handler: () => {
-            console.log('Destructive clicked');
             this.deleteConfirm(wallet);
           }
         }

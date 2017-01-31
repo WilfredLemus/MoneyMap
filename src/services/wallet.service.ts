@@ -14,6 +14,21 @@ export class WalletService{
     return parseInt(localStorage.getItem(StorageKey));
   }
 
+  getActive() : any{
+    // return localStorage.getItem(StorageKey);
+    return Wallet.find(this.getID());
+  }
+
+  update(amount: number){
+    let findPromise = this.getActive();
+
+    let updatePromise = findPromise.then(wallet =>{
+      Wallet.update(this.getID(), (+wallet.amount) + (+amount));
+    });
+
+    return Promise.all([findPromise, updatePromise]);
+  }
+
   empty(): boolean{
     return !localStorage.getItem(StorageKey);
   }

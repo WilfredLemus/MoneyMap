@@ -3,7 +3,8 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from 'ionic-native';
 import { Transaction } from '../../database';
 import { GeolocationService } from '../../services/geolocation.service';
-import { WalletService } from '../../services/wallet.service'
+import { WalletService } from '../../services/wallet.service';
+import { TransactionService } from '../../services/transactions.service';
 
 
 @Component({
@@ -16,10 +17,13 @@ export class AddingPage {
   shouldGeolocate: boolean = false;
   shouldSend: boolean = true;
   imageData: string;
+  income: boolean = false;
   loader: any;
   
-  constructor(public navCtrl: NavController, public geolocator: GeolocationService, 
-              public loadingCtrl: LoadingController, private walletService: WalletService) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController,
+              public geolocator: GeolocationService, 
+              private walletService: WalletService,
+              private transactionService: TransactionService) {
     this.model = this.cleanTransaction();
     this.loader = this.loadingCtrl.create({
       content: "Porfavor espere...",
@@ -66,10 +70,15 @@ export class AddingPage {
 
   save(){
     if(this.shouldSend){
-      this.model.save().then(result => {
+      this.model.amount = this.convertAmountToInt();
+      this.transactionService.save(this.model).then(result => {
         this.model =  this.cleanTransaction();
         this.navCtrl.pop();
       });
+      // this.model.save().then(result => {
+      //   this.model =  this.cleanTransaction();
+      //   this.navCtrl.pop();
+      // });
     }
   }
 
@@ -77,5 +86,13 @@ export class AddingPage {
     let transaction = new Transaction(null, "");
     transaction.walletId = this.walletService.getID();
     return transaction;
+  }
+
+  convertAmountToInt(){
+    let amount = parseInt(this.model.amount+"");
+
+    if(!this.income) amount = amount * -1; //Convertimos el monto a negativo
+    
+    return amount;
   }
 }

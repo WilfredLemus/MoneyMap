@@ -12,7 +12,6 @@
 
 </ion-header>
 
-
 <ion-content>
     <ion-list radio-group>
         <ion-list-header>Mis Carteras</ion-list-header>
@@ -24,9 +23,9 @@
                 </ion-avatar>
                 <ion-label>
                     <strong>
-            {{ wallet.name }}
-            <ion-icon *ngIf="wallet.id === walletService.getID()" small name="checkmark-circle" color="secondary"></ion-icon>
-          </strong>
+                      {{ wallet.name }}
+                      <ion-icon *ngIf="wallet.id === walletService.getID()" small name="checkmark-circle" color="secondary"></ion-icon>
+                    </strong>
                 </ion-label>
                 <ion-badge item-right color="light">
                     <h3>Q.{{ wallet.amount }}</h3>
@@ -35,9 +34,9 @@
             </ion-item>
             <ion-item-options>
                 <button ion-button color="danger" icon-left (tap)=deleteConfirm(wallet)>
-          <ion-icon name="trash"></ion-icon>
-          Eliminar
-        </button>
+                  <ion-icon name="trash"></ion-icon>
+                  Eliminar
+              </button>
             </ion-item-options>
         </ion-item-sliding>
 

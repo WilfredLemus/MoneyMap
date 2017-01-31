@@ -142,6 +142,14 @@ export class Wallet implements IWallet {
               .toArray();
   }
 
+  static find(id: number){
+    return db.wallets.get(id);
+  }
+
+  static update(id, newAmount: number){
+    return db.wallets.update(id, {amount: newAmount});
+  }
+
   updateWallet(wallet) {
     return db.wallets.update(wallet.id, {name: wallet.name, amount: wallet.amount});
   }

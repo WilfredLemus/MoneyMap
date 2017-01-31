@@ -6,27 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Movimientos</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>Movimientos</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <h2 padding>Bienvenidos :)</h2>
-  <ion-card>
-    <ion-card-header>Movimientos</ion-card-header>
-    <ion-list *ngFor="let transaction of transactions">
-      <button ion-item>
+    <ion-card class="monto">
+        <ion-card-header class="title-small">{{ walletActive.name }}</ion-card-header>
+        <p>Q.{{ walletActive.amount }}</p>
+        <p class="title-small">Monto Actual</p>
+    </ion-card>
+    <ion-card>
+        <ion-card-header class="bold">Movimientos</ion-card-header>
+        <ion-list *ngFor="let transaction of transactions">
+            <button ion-item>
         <ion-icon name="pricetags" item-left></ion-icon>
         <strong>{{ transaction.title }}</strong>
-        <ion-badge item-right>Q.{{ transaction.amount }}</ion-badge>
+        <ion-badge item-right [ngClass]="{'red' : transaction.amount < 0}" class="green">Q.{{ transaction.amount }}</ion-badge>
       </button>
-    </ion-list>
-  </ion-card>
-  <ion-fab right bottom>
-    <button ion-fab color="primary" [navPush]="addingPage"><ion-icon name="add"></ion-icon></button>
-  </ion-fab>
+        </ion-list>
+    </ion-card>
+    <ion-fab right bottom>
+        <button ion-fab color="primary" [navPush]="addingPage"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 
 </ion-content>

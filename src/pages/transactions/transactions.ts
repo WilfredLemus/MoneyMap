@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { Transaction } from '../../database';
+import { Transaction, IWallet } from '../../database';
 import { AddingPage } from '../adding/adding';
 import { WalletService } from '../../services/wallet.service';
 import { TransactionService } from '../../services/transactions.service';
@@ -19,6 +19,9 @@ import { TransactionService } from '../../services/transactions.service';
 export class Transactions {
 
   transactions: any;
+  walletActive: IWallet = {amount:0, name:""};
+  carteraActName: string = "";
+  carteraActAmount: number = 0;
   addingPage = AddingPage;
 
   constructor(public navCtrl: NavController, 
@@ -31,6 +34,13 @@ export class Transactions {
     }
     
     this.loadTransactions();
+    this.loadWallet();
+  }
+
+  loadWallet(){
+    this.walletService.getActive().then((wallet) => {
+      this.walletActive = wallet;
+    });
   }
 
   loadTransactions(){

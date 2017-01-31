@@ -12,6 +12,7 @@ export class NewWalletPage {
 
   model: Wallet = new Wallet(null, "");
   // model: Wallet;
+  titleWallet: string = "Nueva";
   EditWallet: Wallet;
   wallet: IWallet[];
 
@@ -24,6 +25,7 @@ export class NewWalletPage {
         this.model.id = this.wallet[0].id;
         this.model.name = this.wallet[0].name;
         this.model.amount = this.wallet[0].amount;
+        this.titleWallet = "Editar";
       });
     }     
   }

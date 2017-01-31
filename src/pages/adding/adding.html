@@ -6,37 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Agregar Movimiento</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>Agregar Movimiento</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-item>
-    <ion-label floating>Descripcion</ion-label>
-    <ion-input type="text" name="title" [(ngModel)]="model.title"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label floating>Monto Gastado</ion-label>
-    <ion-input type="number" name="amount" [(ngModel)]="model.amount"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Guardar Ubicacion</ion-label>
-    <ion-toggle [(ngModel)]="shouldGeolocate" (ionChange)="getLocation()"></ion-toggle>
-  </ion-item>
-  <ion-item *ngIf="imageData">
-    <img [src]="imageData" />
-  </ion-item>
-  <ion-item>
-    <button ion-button block clear (click)="getPhoto()">
-      <ion-icon name="camera" item-left></ion-icon>
-        Agregar Foto
-    </button>
-  </ion-item>
-  
-  <div padding>
-    <button ion-button block (click)="save()" [disabled]="!shouldSend">Agregar</button>
-  </div>
+    <div class="red amount-field" [ngClass]="{'green' : income}">
+        <input type="number" name="amount" [(ngModel)]="model.amount" autofocus="true" placeholder="0" />
+    </div>
+    <ion-item>
+        <ion-label>Es Ingreso</ion-label>
+        <ion-toggle [(ngModel)]="income"></ion-toggle>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>Descripcion</ion-label>
+        <ion-input type="text" name="title" [(ngModel)]="model.title"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Guardar Ubicacion</ion-label>
+        <ion-toggle [(ngModel)]="shouldGeolocate" (ionChange)="getLocation()"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="imageData">
+        <img [src]="imageData" />
+    </ion-item>
+    <ion-item>
+        <button ion-button block clear (click)="getPhoto()">
+          <ion-icon name="camera" item-left></ion-icon>
+          Agregar Foto
+        </button>
+    </ion-item>
+
+    <div padding>
+        <button ion-button block (click)="save()" [disabled]="!shouldSend">Agregar</button>
+    </div>
 </ion-content>
